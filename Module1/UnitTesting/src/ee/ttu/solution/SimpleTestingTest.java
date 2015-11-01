@@ -12,7 +12,7 @@ public class SimpleTestingTest {
 	SimpleTesting simpleTesting;
 	
 	//Methods marked with the @Before annotation
-	//are run before tests
+	//are run before each test
 	//They can be used to initialize stuff
 	@Before
 	public void setUp(){
@@ -21,20 +21,25 @@ public class SimpleTestingTest {
 	
 	@Test
 	public void testGetIntegerFromString() {
-		int result = simpleTesting.getIntegerFromString("42");
-		assertEquals(42, result);
+		int actualResult = simpleTesting.getIntegerFromString("42");
+		int expectedResult = 42;
+		assertEquals(expectedResult, actualResult);
 	}
 	
 	@Test
 	public void testGetContentFromFile(){
-		String content = simpleTesting.getContentFromFile(new File("testFile.txt"));
-		assertEquals("Hello!", content);
+		String actualContent = simpleTesting.getContentFromFile(new File("testFile.txt"));
+		String expectedContent = "Hello!";
+		
+		assertEquals(expectedContent, actualContent);
 	}
 	
 	@Test
 	public void testGetRandomNumber(){
-		//Is testing this even possible?
-		int result = simpleTesting.getRandomNumber();
+		int firstResult = simpleTesting.getRandomNumber();
+		int secondResult = simpleTesting.getRandomNumber();
+		
+		assertNotEquals("Random calls should yield different results!",firstResult, secondResult);
 	}
 
 }
